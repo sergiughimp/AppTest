@@ -1,8 +1,14 @@
 import streamlit as st
 import pandas as pd
 import json
-import folium
-from streamlit_folium import st_folium
+
+# Try to import folium safely
+try:
+    import folium
+    from streamlit_folium import st_folium
+    FOLIUM_AVAILABLE = True
+except ModuleNotFoundError:
+    FOLIUM_AVAILABLE = False
 
 # Title
 st.title("Hello, World! 👋")
@@ -13,6 +19,7 @@ name = st.text_input("What's your name?")
 if name:
     st.success(f"Hello, {name}! 🎉")
 
+
 # ---------------------------
 # Load CSV data
 # ---------------------------
@@ -20,49 +27,68 @@ if name:
 def load_data():
     return pd.read_csv("data/processed/measurements.csv")
 
-df = load_data()
-
-st.subheader("📊 Measurements Data")
-st.write(df.head())
-
-# Basic stats
-st.subheader("📈 Summary Statistics")
-st.write(df.describe())
 
 # ---------------------------
 # Load GeoJSON
 # ---------------------------
 @st.cache_data
 def load_geojson():
-    with open("data/geo/camden.json") as f:
+    with open("data/geo/camden.json", "r", encoding="utf-8") as f:
         return json.load(f)
 
-geo_data = load_geojson()
+
+# Load files safely
+try:
+    df = load_data()
+    st.subheader("📊 Measurements Data")
+    st.write(df.head())
+
+    st.subheader("📈 Summary Statistics")
+    st.write(df.describe(include="all"))
+except Exception as e:
+    st.error(f"Could not load CSV file: {e}")
+    df = pd.DataFrame()
+
+try:
+    geo_data = load_geojson()
+except Exception as e:
+    st.error(f"Could not load GeoJSON file: {e}")
+    geo_data = None
+
 
 # ---------------------------
 # Map
 # ---------------------------
 st.subheader("🗺️ Camden Map")
 
-# Center around Camden (approx coords)
-m = folium.Map(location=[51.54, -0.14], zoom_start=12)
+if not FOLIUM_AVAILABLE:
+    st.warning("Folium is not installed, so the map cannot be displayed.")
+    st.info("Add 'folium' and 'streamlit-folium' to your requirements.txt file.")
+elif geo_data is None:
+    st.warning("GeoJSON file could not be loaded.")
+else:
+    m = folium.Map(location=[51.54, -0.14], zoom_start=12)
 
-# Add GeoJSON layer
-folium.GeoJson(
-    geo_data,
-    name="Camden"
-).add_to(m)
+    folium.GeoJson(
+        geo_data,
+        name="Camden"
+    ).add_to(m)
 
-# Display map
-st_folium(m, width=700, height=500)
+    st_folium(m, width=700, height=500)
+
 
 # ---------------------------
-# Optional: Plot from CSV
+# Data Visualization
 # ---------------------------
 st.subheader("📉 Data Visualization")
 
-# Example: if you have columns like 'value'
-if "value" in df.columns:
-    st.line_chart(df["value"])
+if not df.empty:
+    numeric_columns = df.select_dtypes(include="number").columns.tolist()
+
+    if numeric_columns:
+        selected_column = st.selectbox("Choose a numeric column to plot", numeric_columns)
+        st.line_chart(df[selected_column])
+    else:
+        st.write("No numeric columns found in measurements.csv.")
 else:
-    st.write("Add a 'value' column to visualize trends.")
+    st.write("No data available to visualize.")
