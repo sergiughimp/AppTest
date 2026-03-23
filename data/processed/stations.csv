@@ -1,0 +1,28 @@
+borough,station_name,station_code,site_type,latitude,longitude
+Camden,Camden - Bloomsbury,BL0,Urban Background,51.522287,-0.125848
+Camden,Camden - Coopers Lane,KX4,Industrial,51.533238,-0.129594
+Camden,Camden - Euston Road,CD9,Roadside,51.527975,-0.1287742
+Camden,Camden - Holborn (Bee Midtown),IM1,Kerbside,51.5173675146177,-0.1201947113171
+Camden,Camden - Shaftesbury Avenue,CD3,Roadside,51.515532,-0.127027
+Camden,Camden - St Martins College (NOX 1),CD4,Urban Background,51.518846,-0.12034
+Camden,Camden - St Martins College (NOX 2),CD5,Urban Background,51.518846,-0.12034
+Camden,Camden - Swiss Cottage,CD1,Kerbside,51.544219,-0.175284
+Greenwich,Greenwich - A206 Burrage Grove,GN0,Roadside,51.490532,0.074003
+Greenwich,Greenwich - Blackheath,GR7,Roadside,51.472504,-0.012381
+Greenwich,Greenwich - Eltham,GR4,Suburban,51.45258,0.070766
+Greenwich,Greenwich - Fiveways Sidcup Rd A20,GN4,Roadside,51.4346627060562,0.0642224671704697
+Greenwich,Greenwich - John Harrison Way,GN6,Roadside,51.4937746695818,0.0107796237032558
+Greenwich,Greenwich - Millennium Village,GN2,Industrial,51.492571,0.017697
+Greenwich,Greenwich - Plumstead High Street,GN3,Roadside,51.486957,0.095111
+Greenwich,Greenwich - Trafalgar Road,GR5,Roadside,51.4834490664601,-0.000145562683198809
+Greenwich,Greenwich - Trafalgar Road (Hoskins St),GN5,Roadside,51.4839072533485,0.000407396935849736
+Greenwich,Greenwich - Tunnel Avenue,TL4,Roadside,51.495057,0.0041074676
+Greenwich,Greenwich - Westhorne Avenue,GR9,Roadside,51.456357,0.040725
+Greenwich,Greenwich - Woolwich Flyover,GR8,Roadside,51.486884,0.017901
+Tower Hamlets,Tower Hamlets - Bethnal Green,TH3,Urban Background,51.526737,-0.053869
+Tower Hamlets,Tower Hamlets - Blackwall,TH4,Roadside,51.5150461674013,-0.00841849265642741
+Tower Hamlets,Tower Hamlets - King Edward Memorial Park,TH7,Urban Background,51.5094228799835,-0.0505278232872832
+Tower Hamlets,Tower Hamlets - Mile End Road,TH2,Roadside,51.5225462561171,-0.0420823040635312
+Tower Hamlets,Tower Hamlets - Millwall Park,TH6,Urban Background,51.4891342634,-0.0129769309432
+Tower Hamlets,Tower Hamlets - Poplar,TH1,Urban Background,51.510012,-0.019866
+Tower Hamlets,Tower Hamlets - Victoria Park,TH5,Urban Background,51.5399327394691,-0.0331740581778178
